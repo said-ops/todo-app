@@ -33,9 +33,10 @@ const initialTodos = [
     },
 ]
 
-const useTodoStore = create (set=>({
+const useTodoStore = create (set => ({
 
     todos:initialTodos,
+    //add new todo
     addTodo : text => set(state => ({
         todos : [
             ...state.todos,
@@ -46,10 +47,21 @@ const useTodoStore = create (set=>({
         }
         ]
     })),
-    deleteTodo: id=>set(state=>({
-        todos:state.todos.filter((todo)=>todo.id != id)
+    //delete exesting todo
+    deleteTodo: id  =>set(state => ({
+        todos:state.todos.filter((todo) => todo.id != id)
         
     })),
+    //setting todos completed/pending
+    toggleComplete : id => set(state => ({
+        todos : state.todos.map(todo => {
+            if(todo.id === id){
+                return(
+                    {...todo , completed: !todo.completed}
+                )
+            }else return todo
+        })
+    }))
 }))
 
 export default useTodoStore

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useRef, useState} from 'react'
 import deleteIcon from '../assets/images/icon-cross.svg'
 import useTodoStore from '../store/useTodosStore'
 
@@ -10,7 +10,8 @@ function TodoBody() {
     const todos = useTodoStore(state=>state.todos)
     const addTodo = useTodoStore(state=>state.addTodo)
     const deleteTodo = useTodoStore(state=>state.deleteTodo)
-
+    const toggleComplete = useTodoStore(state =>state.toggleComplete)
+    //hundle Enter key
     function hundelEnter(event) {
         if(event.key==='Enter' && event.target.value !== ''){
             addTodo(event.target.value)
@@ -24,7 +25,6 @@ function TodoBody() {
             <input 
                 type="text" 
                 placeholder='Create a new todo...'
-                
                 onKeyDown={e=>hundelEnter(e)}
                 onChange={e=>setInputValue(e.target.value)}
             />
@@ -33,16 +33,22 @@ function TodoBody() {
             {
                 todos.map(todo=>{
                      return (
-                        <div className='item' key={todo.id}>
-                            <input type="checkbox" name='complete'/>
-                            <h2 className='todo-title'>{todo.text}</h2>
+                        <div className='item' key={todo.id} >
+                            <input type="checkbox"
+                                   name='complete'
+                                   onChange={() => {toggleComplete(todo.id)}
+                                   }
+                            />
+                            <h2 className={`todo-title ${todo.completed ? 'line-through' : ''}`}>
+                                {todo.text}
+                            </h2>
                             <div className='delete-todo' onClick={()=> deleteTodo(todo.id)}>
                                 <img src={deleteIcon} alt="delete icon" />
                             </div>
                         </div>
                     )
                 })
-            }
+            }   
         </div>
     </div>
   )
