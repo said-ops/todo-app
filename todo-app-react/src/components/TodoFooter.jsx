@@ -1,40 +1,67 @@
-import React, { useRef } from 'react'
-import useTodoStore from '../store/useTodosStore'
+import React, { useRef } from "react";
+import useTodoStore from "../store/useTodosStore";
 
 function TodoFooter() {
-  const all = useRef()
-  const active = useRef()
-  const completed = useRef()
-  const refs = [all,active,completed]
-  function addBlue (e){
-    refs.forEach(ref=>{
-      ref.current.classList.remove('blue-controls')
-    })
-    e.target.classList.add('blue-controls')
+  //refs
+  const all = useRef();
+  const active = useRef();
+  const completed = useRef();
+  const refs = [all, active, completed];
+  //toggle class blue
+  function addBlue(e) {
+    refs.forEach((ref) => {
+      ref.current.classList.remove("blue-controls");
+    });
+    e.target.classList.add("blue-controls");
   }
+  //set control
+  const setControl = useTodoStore((state) => state.setControl);
+  const clearCompleted = useTodoStore((state) => state.clearCompleted);
 
-  const setControl = useTodoStore(state=>state.setControl)
   return (
-    <div className='todo-footer'>
-        <div className='iteme-left'>5 items left</div>
-        <div className='controls'>
-            <div onClick={(e) => {
-              setControl('all')
-              addBlue(e)
-                }} ref={all}>All
-            </div>
-            <div onClick={(e) => {
-              setControl('active')
-              addBlue(e)
-              }} ref={active}>Active</div>
-            <div onClick={(e) => {
-              setControl('completed')
-              addBlue(e)
-              }} ref={completed}>Complete</div>
+    <div className="todo-footer">
+      <div className="iteme-left">5 items left</div>
+      <div className="controls">
+        <div
+          className="blue-controls"
+          onClick={(e) => {
+            setControl("all");
+            addBlue(e);
+          }}
+          ref={all}
+        >
+          All
         </div>
-        <div className='clear'>Clear Copmleted</div>
+        <div
+          onClick={(e) => {
+            setControl("active");
+            addBlue(e);
+          }}
+          ref={active}
+        >
+          Active
+        </div>
+        <div
+          onClick={(e) => {
+            setControl("completed");
+            addBlue(e);
+          }}
+          ref={completed}
+        >
+          Complete
+        </div>
+      </div>
+      <div
+        className="clear"
+        onClick={() => {
+          if (confirm("do you want to clear completed todos?"))
+            clearCompleted();
+        }}
+      >
+        Clear Copmleted
+      </div>
     </div>
-  )
+  );
 }
 
-export default TodoFooter
+export default TodoFooter;
