@@ -9,6 +9,7 @@ function TodoBody() {
     //todos store
     const todos = useTodoStore(state=>state.todos)
     const addTodo = useTodoStore(state=>state.addTodo)
+    const deleteTodo = useTodoStore(state=>state.deleteTodo)
 
     function hundelEnter(event) {
         if(event.key==='Enter' && event.target.value !== ''){
@@ -35,7 +36,7 @@ function TodoBody() {
                         <div className='item' key={todo.id}>
                             <input type="checkbox" name='complete'/>
                             <h2 className='todo-title'>{todo.text}</h2>
-                            <div className='delete-todo'>
+                            <div className='delete-todo' onClick={()=> deleteTodo(todo.id)}>
                                 <img src={deleteIcon} alt="delete icon" />
                             </div>
                         </div>

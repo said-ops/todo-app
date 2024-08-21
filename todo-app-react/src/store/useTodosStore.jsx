@@ -45,7 +45,11 @@ const useTodoStore = create (set=>({
             completed : false
         }
         ]
-    }))
+    })),
+    deleteTodo: id=>set(state=>({
+        todos:state.todos.filter((todo)=>todo.id != id)
+        
+    })),
 }))
 
 export default useTodoStore

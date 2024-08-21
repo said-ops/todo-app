@@ -34,7 +34,7 @@ body{
     width: 542px;
     display: flex;
     flex-direction: column;
-    transform: translateY(2.3rem);
+    transform: translateY(2.7rem);
 }
 .todo-header{
     height: 100px;
