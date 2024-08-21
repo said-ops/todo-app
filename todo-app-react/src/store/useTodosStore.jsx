@@ -2,33 +2,33 @@ import { create } from "zustand";
 
 const initialTodos = [
   {
-    text: "Complete javascript course online",
+    text: "Complete Javascript course online",
     id: 1,
-    completed: true,
+    completed: false,
   },
   {
-    text: "Complete javascript course online",
-    completed: true,
+    text: "Jog arround the park 3x",
+    completed: false,
     id: 2,
   },
   {
-    text: "Complete javascript course online",
+    text: "10 minutes meditation",
     completed: false,
     id: 3,
   },
   {
-    text: "Complete javascript course online",
+    text: "Read for 1 hour",
     completed: false,
     id: 4,
   },
   {
-    text: "Complete javascript course online",
+    text: "Pick up Groceries",
     completed: false,
     id: 5,
   },
   {
-    text: "Complete javascript course online",
-    completed: false,
+    text: "Complete Todo App on Frontend Mentor",
+    completed: true,
     id: 6,
   },
 ];
