@@ -11,6 +11,7 @@ function TodoBody() {
   const deleteTodo = useTodoStore((state) => state.deleteTodo);
   const toggleComplete = useTodoStore((state) => state.toggleComplete);
   const control = useTodoStore((state) => state.control);
+  const theme = useTodoStore(state=>state.theme)
 
   //hundle Enter key
   function hundelEnter(event) {
@@ -30,6 +31,7 @@ function TodoBody() {
     <div className="todo-body">
       <div className="add-todo">
         <input
+          className={theme ==='dark' ? 'dark-input' : ''}
           type="text"
           placeholder="Create a new todo..."
           onKeyDown={(e) => hundelEnter(e)}
@@ -37,12 +39,16 @@ function TodoBody() {
           value={inputValue}
         />
       </div>
-      <div className="display-todos">
+      <div className={
+        `display-todos ${theme==='dark' ? 'dark-todo-body':''}`
+      }>
         {
           //display todos
           filteredTodos.map((todo) => {
             return (
-              <div className="item" key={todo.id}>
+              <div className={
+                `item ${theme==='dark' ? 'dark-item':''}`
+              } key={todo.id}>
                 <input
                   type="checkbox"
                   name="complete"

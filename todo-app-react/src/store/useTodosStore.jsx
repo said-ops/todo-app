@@ -70,6 +70,8 @@ const useTodoStore = create((set) => ({
     set((state) => ({
       todos: state.todos.filter((todo) => todo.completed === false),
     })),
+    theme: 'light',
+    setTheme : (theme)=>set({theme})
 }));
 
 export default useTodoStore;

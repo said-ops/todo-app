@@ -6,6 +6,7 @@ function TodoFooter() {
   const all = useRef();
   const active = useRef();
   const completed = useRef();
+  // const clear = useRef();
   const refs = [all, active, completed];
   //toggle class blue
   function addBlue(e) {
@@ -17,10 +18,23 @@ function TodoFooter() {
   //set control
   const setControl = useTodoStore((state) => state.setControl);
   const clearCompleted = useTodoStore((state) => state.clearCompleted);
+  const todos = useTodoStore(state=> state.todos)
+  const theme = useTodoStore(state=>state.theme)
+  //active elemnts count
+function count(){
+  let i =0
+  todos.forEach(todo=>{
+    if(!todo.completed)
+      i++
+  })
+  return i
+}
 
   return (
-    <div className="todo-footer">
-      <div className="iteme-left">5 items left</div>
+    <div className={
+      `todo-footer ${theme==='dark' ? 'dark-todo-footer':''}`
+    }>
+      <div className="iteme-left">{count()} items left</div>
       <div className="controls">
         <div
           className="blue-controls"
@@ -53,10 +67,12 @@ function TodoFooter() {
       </div>
       <div
         className="clear"
-        onClick={() => {
+        onClick={(e) => {
           if (confirm("do you want to clear completed todos?"))
             clearCompleted();
+            // addBlue(e)
         }}
+        // ref={clear}
       >
         Clear Copmleted
       </div>

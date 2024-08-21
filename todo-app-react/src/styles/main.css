@@ -110,6 +110,9 @@ body {
 .delete-todo:hover {
   cursor: pointer;
 }
+.todo-header img:hover{
+    cursor: pointer;
+}
 /*inpput */
 input[type="checkbox"] {
   appearance: none;
@@ -119,6 +122,10 @@ input[type="checkbox"] {
   height: 25px;
   outline: 0;
   position: relative;
+  font-family: 'main';
+  color: var(--very-dark-grayish-blue);
+  font-size: 20px;
+  /* font-weight: 700; */
 }
 input[type="checkbox"]:checked {
   background: var(--gradient);
@@ -126,6 +133,7 @@ input[type="checkbox"]:checked {
 }
 input:hover {
   cursor: pointer;
+  border-color: aqua;
 }
 input[type="checkbox"]:checked::after {
   content: "";
@@ -150,4 +158,16 @@ input[type="checkbox"]:checked::after {
 }
 .display-todos {
   min-height: 396px;
+}
+/*dark theme*/
+.dark-input{
+    background: #26283d;
+    color: var(--very-light-grey);
+}
+.dark-todo-body,.dark-item{
+    background-color: #26283d;
+    color: var(--very-light-grey);
+}
+.dark-todo-footer{
+    background-color: #26283d;
 }
