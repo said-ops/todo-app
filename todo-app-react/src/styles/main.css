@@ -73,13 +73,21 @@ body{
 }
 .item{
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     height: 3.5rem;
     align-items: center;
     border-bottom: 1px solid var(--very-light-greyish);
     padding: 1rem;
     color: var(--very-dark-grayish-blue);
     font-size: 20px;
+    gap: 1rem;
+}
+.todo-title{
+   
+
+}
+.delete-todo{
+    margin-left: auto;
 }
 .todo-footer{
     display: flex;
@@ -107,8 +115,8 @@ input[type="checkbox"]{
     appearance: none;
     border: 1px solid #ccc;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     outline: 0;
     position: relative;
 }

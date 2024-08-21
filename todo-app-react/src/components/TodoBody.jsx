@@ -1,43 +1,41 @@
 import React from 'react'
 import deleteIcon from '../assets/images/icon-cross.svg'
-import useTodosStore from '../store/useTodosStore'
+import useTodoStore from '../store/useTodosStore'
 
 function TodoBody() {
 
-    const todos = useTodosStore(state=>state.todos)
-    const addTodos = useTodosStore(state=>state.addTodos)
+    const todos = useTodoStore(state=>state.todos)
+    const addTodo = useTodoStore(state=>state.addTodo)
 
-function handleEnter (event){
-    if(event.key==='Enter'){
-        addTodos(event.target.value)
+    function hundelEnter(event) {
+        if(event.key==='Enter'){
+            addTodo(event.target.value)
+            event.target.value = ''
+        }
     }
-}
   return (
     <div className='todo-body'>
         <div className='add-todo'>
             <input 
                 type="text" 
-                placeholder='Create a new todo'
-                onKeyDown={e=> {
-                    if(e.key==='Enter'){
-                        addTodos(e.target.value);
-                    }
-                }
-                    
-                }
-                
-                 />
+                placeholder='Create a new todo...'
+                onKeyDown={e=>hundelEnter(e)} 
+            />
         </div>
         <div className='display-todos'>
-            {todos.map(todo=>{
-                return <div className='item' key={todo.id}>
+            {
+                todos.map(todo=>{
+                     return (
+                        <div className='item' key={todo.id}>
                             <input type="checkbox" name='complete'/>
                             <h2 className='todo-title'>{todo.text}</h2>
                             <div className='delete-todo'>
                                 <img src={deleteIcon} alt="delete icon" />
                             </div>
                         </div>
-            })}
+                    )
+                })
+            }
         </div>
     </div>
   )
