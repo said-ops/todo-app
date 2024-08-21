@@ -33,7 +33,7 @@ const initialTodos = [
   },
 ];
 
-const useTodoStore = create((set) => ({
+const useTodoStore = create((set,get) => ({
   //controls
   control: "all",
   setControl: (control) => set({ control }),
@@ -71,7 +71,31 @@ const useTodoStore = create((set) => ({
       todos: state.todos.filter((todo) => todo.completed === false),
     })),
     theme: 'light',
-    setTheme : (theme)=>set({theme})
+    setTheme : (theme)=>set({theme}),
+    //save todos to local storage
+    saveTodos : () =>{
+      const todos = get().todos
+      localStorage.setItem('savedTodos',JSON.stringify(todos))
+    },
+    //load todos from local storage
+    loadTodos : () =>{
+      const savedTodos = localStorage.getItem('savedTodos')
+      if(savedTodos){
+        set({todos:JSON.parse(savedTodos)})
+      }
+    },
+    //save theme 
+    saveTheme : () => {
+      const theme = get().theme
+      localStorage.setItem('savedTheme',theme)
+    },
+    //load theme
+    loadTheme : () =>{
+      const theme = localStorage.getItem('savedTheme')
+      if(theme){
+        set({theme :theme})
+      }
+    }
 }));
 
 export default useTodoStore;

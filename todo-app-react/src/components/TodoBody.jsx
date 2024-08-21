@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import deleteIcon from "../assets/images/icon-cross.svg";
 import useTodoStore from "../store/useTodosStore";
 
@@ -12,14 +12,22 @@ function TodoBody() {
   const toggleComplete = useTodoStore((state) => state.toggleComplete);
   const control = useTodoStore((state) => state.control);
   const theme = useTodoStore(state=>state.theme)
+  const saveTodos = useTodoStore(state=>state.saveTodos)
+  const loadTodos = useTodoStore(state=>state.loadTodos)
 
+  useEffect(()=>{
+    loadTodos();
+  },[loadTodos])
   //hundle Enter key
   function hundelEnter(event) {
     if (event.key === "Enter" && event.target.value !== "") {
       addTodo(event.target.value);
       setInputValue("");
+      saveTodos();
     }
   }
+  
+  
   //filter todos
   const filteredTodos = todos.filter((todo) => {
     if (control === "completed") return todo.completed;
@@ -55,6 +63,7 @@ function TodoBody() {
                   checked={todo.completed}
                   onChange={() => {
                     toggleComplete(todo.id);
+                    saveTodos()
                   }}
                 />
                 <h2
@@ -66,7 +75,12 @@ function TodoBody() {
                 </h2>
                 <div
                   className="delete-todo"
-                  onClick={() => deleteTodo(todo.id)}
+                  onClick={() => {
+                    deleteTodo(todo.id)
+                    saveTodos()
+                  }
+                    
+                  }
                 >
                   <img src={deleteIcon} alt="delete icon" />
                 </div>
