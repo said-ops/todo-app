@@ -1,15 +1,19 @@
-import React from 'react'
+import React,{useState} from 'react'
 import deleteIcon from '../assets/images/icon-cross.svg'
 import useTodoStore from '../store/useTodosStore'
 
 function TodoBody() {
 
+    //useState to set the input value
+    const [inputValue,setInputValue] = useState('')
+    //todos store
     const todos = useTodoStore(state=>state.todos)
     const addTodo = useTodoStore(state=>state.addTodo)
 
     function hundelEnter(event) {
-        if(event.key==='Enter'){
+        if(event.key==='Enter' && event.target.value !== ''){
             addTodo(event.target.value)
+            setInputValue(event.target.value)
             event.target.value = ''
         }
     }
@@ -19,7 +23,9 @@ function TodoBody() {
             <input 
                 type="text" 
                 placeholder='Create a new todo...'
-                onKeyDown={e=>hundelEnter(e)} 
+                
+                onKeyDown={e=>hundelEnter(e)}
+                onChange={e=>setInputValue(e.target.value)}
             />
         </div>
         <div className='display-todos'>

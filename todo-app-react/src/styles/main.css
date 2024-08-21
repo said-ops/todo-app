@@ -6,10 +6,7 @@
 :root{
     /*=======primary========*/
     --bright-blue:hsl(220, 98%, 61%);
-    --gradient:linear-gradient(
-        0% hsl(192, 100%, 67%),
-        100% hsl(280, 87%, 65%)
-    );
+    --gradient:linear-gradient(0deg, rgba(87,221,255,1) 7%, rgba(192,89,242,1) 90%);
     /*====light theme======*/
     --very-light-grey:hsl(0, 0%, 98%);
     --very-light-greyish:hsl(236, 33%, 92%);
@@ -37,20 +34,20 @@ body{
     width: 542px;
     display: flex;
     flex-direction: column;
-    /* background-color: wheat; */
+    transform: translateY(2.3rem);
 }
 .todo-header{
     height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    padding-inline: 1rem;
 }
 .todo-header h1{
     color: var(--very-light-grey);
     font-weight: 600;
     font-size: 2.5rem;
-    letter-spacing: 10px;
+    letter-spacing: 16px;
 }
 .todo-body{
     display: flex;
@@ -60,6 +57,7 @@ body{
 .add-todo,.display-todos,.todo-footer{
     background: var(--very-light-grey);
     box-shadow: -1px 0px 3px 1px var(--very-light-grey);
+    border-radius: 10px;
 }
 .add-todo input{
     width: 100%;
@@ -74,17 +72,13 @@ body{
 .item{
     display: flex;
     /* justify-content: space-between; */
-    height: 3.5rem;
+    height: 66px;
     align-items: center;
     border-bottom: 1px solid var(--very-light-greyish);
     padding: 1rem;
     color: var(--very-dark-grayish-blue);
     font-size: 20px;
-    gap: 1rem;
-}
-.todo-title{
-   
-
+    gap: 1.5rem;
 }
 .delete-todo{
     margin-left: auto;
@@ -97,7 +91,6 @@ body{
     align-items: center;
     font-size: 13px;
     color: var(--dark-grayish-blue);
-    
 }
 .controls{
     display: flex;
@@ -121,8 +114,8 @@ input[type="checkbox"]{
     position: relative;
 }
 input[type="checkbox"]:checked {
-    background-color: cyan; /* Change color when checked */
-    border-color: cyan; 
+    background: var(--gradient); 
+    border-color: var(--bright-blue); 
   }
   input:hover{
     cursor: pointer;
@@ -140,3 +133,8 @@ input[type="checkbox"]:checked::after {
     border-radius: 50%; 
     background-repeat: no-repeat;
   }
+  /*line through*/
+  .line-through{
+    text-decoration: line-through;
+    color: var(--light-garyish-blue);
+}

@@ -1,8 +1,41 @@
 import {create} from 'zustand'
 
+const initialTodos = [
+    {
+        text:'Complete javascript course online',
+        id:1,
+        completed:false
+    },
+    {
+        text:'Complete javascript course online',
+        completed:false,
+        id:2,
+    },
+    {
+        text:'Complete javascript course online',
+        completed:false,
+        id:3,
+    },
+    {
+        text:'Complete javascript course online',
+        completed:false,
+        id:4,
+    },
+    {
+        text:'Complete javascript course online',
+        completed:false,
+        id:5,
+    },
+    {
+        text:'Complete javascript course online',
+        completed:false,
+        id:6,
+    },
+]
+
 const useTodoStore = create (set=>({
 
-    todos:[],
+    todos:initialTodos,
     addTodo : text => set(state => ({
         todos : [
             ...state.todos,
