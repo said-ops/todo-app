@@ -4,11 +4,11 @@ const initialTodos = [
     {
         text:'Complete javascript course online',
         id:1,
-        completed:false
+        completed:true
     },
     {
         text:'Complete javascript course online',
-        completed:false,
+        completed:true,
         id:2,
     },
     {
@@ -34,17 +34,17 @@ const initialTodos = [
 ]
 
 const useTodoStore = create (set => ({
-
+    control:'all',
     todos:initialTodos,
     //add new todo
     addTodo : text => set(state => ({
         todos : [
             ...state.todos,
-        {
-            id : Date.now(),
-            text,
-            completed : false
-        }
+            {
+                id : Date.now(),
+                text,
+                completed : false
+            }
         ]
     })),
     //delete exesting todo
@@ -61,7 +61,8 @@ const useTodoStore = create (set => ({
                 )
             }else return todo
         })
-    }))
+    })),
+    setControl : (control) => set({control})
 }))
 
 export default useTodoStore

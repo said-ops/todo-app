@@ -11,14 +11,24 @@ function TodoBody() {
     const addTodo = useTodoStore(state=>state.addTodo)
     const deleteTodo = useTodoStore(state=>state.deleteTodo)
     const toggleComplete = useTodoStore(state =>state.toggleComplete)
+    const control = useTodoStore(state => state.control)
+    
     //hundle Enter key
     function hundelEnter(event) {
         if(event.key==='Enter' && event.target.value !== ''){
             addTodo(event.target.value)
-            setInputValue(event.target.value)
-            event.target.value = ''
+            setInputValue('')
         }
     }
+    //filter todos
+    const filteredTodos = todos.filter(todo=>{
+        if(control === 'completed')
+            return todo.completed
+        if(control === 'active')
+            return !todo.completed
+        return true
+    })
+
   return (
     <div className='todo-body'>
         <div className='add-todo'>
@@ -27,15 +37,17 @@ function TodoBody() {
                 placeholder='Create a new todo...'
                 onKeyDown={e=>hundelEnter(e)}
                 onChange={e=>setInputValue(e.target.value)}
+                value={inputValue}
             />
         </div>
         <div className='display-todos'>
-            {
-                todos.map(todo=>{
+            {   //display todos
+                filteredTodos.map(todo=>{
                      return (
                         <div className='item' key={todo.id} >
                             <input type="checkbox"
                                    name='complete'
+                                   checked={todo.completed}
                                    onChange={() => {toggleComplete(todo.id)}
                                    }
                             />

@@ -72,10 +72,10 @@ body{
 .item{
     display: flex;
     /* justify-content: space-between; */
-    height: 66px;
+    min-height: 66px;
     align-items: center;
     border-bottom: 1px solid var(--very-light-greyish);
-    padding: 1rem;
+    padding-inline: 1rem;
     color: var(--very-dark-grayish-blue);
     font-size: 20px;
     gap: 1.5rem;
@@ -137,4 +137,7 @@ input[type="checkbox"]:checked::after {
   .line-through{
     text-decoration: line-through;
     color: var(--light-garyish-blue);
+}
+.blue-controls{
+    color:var(--bright-blue)
 }
