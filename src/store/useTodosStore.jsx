@@ -70,7 +70,7 @@ const useTodoStore = create((set,get) => ({
     set((state) => ({
       todos: state.todos.filter((todo) => todo.completed === false),
     })),
-    theme: 'light',
+    theme: 'dark',
     setTheme : (theme)=>set({theme}),
     //save todos to local storage
     saveTodos : () =>{
