@@ -23,7 +23,7 @@
 *::after,
 *::before {
   box-sizing: border-box;
-  transition: all 0.6s ease;
+  transition: all 0.1s ease;
 }
 /*==================start styling==========*/
 body {
@@ -214,4 +214,13 @@ input[type="checkbox"]:checked::after {
 }
 ::-webkit-scrollbar-thumb:hover {
   cursor: pointer;
+}
+.delete-todo{
+  visibility: hidden;
+}
+.item{
+  cursor: pointer;
+}
+.item:hover .delete-todo{
+  visibility: visible;
 }
